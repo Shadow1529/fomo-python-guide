@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="description" content="Plain-spoken Python notes, examples, and reference posts by fomo." />
+    <title>Python posts — fomo</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="#top">fomo<span>.</span></a>
+      <nav aria-label="Main navigation"><a href="#posts">All posts</a><a href="#about">About</a></nav>
+      <span class="header-note">PYTHON NOTES / 01</span>
+    </header>
+
+    <main id="top">
+      <section class="intro">
+        <p class="eyebrow">A small Python notebook by fomo</p>
+        <h1>Python, one post<br />at a time.</h1>
+        <p class="intro-copy">Short notes for learning Python without making it a whole thing. Open a post, try the example, and follow whatever catches your eye.</p>
+      </section>
+
+      <section class="reader-view" id="reader-view" aria-label="Python lesson" hidden>
+        <a class="back-link" href="#posts">← Back to all posts</a>
+        <article id="reader-article"></article>
+      </section>
+
+      <section class="posts-section" id="posts" aria-labelledby="posts-title">
+        <div class="feed-heading">
+          <div><p class="eyebrow">THE NOTEBOOK</p><h2 id="posts-title">Posts</h2></div>
+          <span class="post-count" id="result-count" aria-live="polite">All posts</span>
+        </div>
+        <div class="controls">
+          <label class="search-wrap"><span class="visually-hidden">Search posts</span><span aria-hidden="true">⌕</span><input id="topic-search" type="search" placeholder="Search posts…" autocomplete="off" /></label>
+          <label class="visually-hidden" for="category-filter">Filter posts by topic</label>
+          <select id="category-filter">
+            <option value="all">Every topic</option><option value="basics">Basics</option><option value="data">Data & collections</option><option value="flow">Control flow</option><option value="functions">Functions & objects</option><option value="tools">Modules & tools</option><option value="advanced">More Python</option>
+          </select>
+        </div>
+        <p class="empty-state" id="empty-state" hidden>No posts found. Try a different search.</p>
+
+        <div class="post-list" id="post-list">
+          <article class="post" data-category="basics">
+            <details>
+              <summary><span class="post-meta">01 / BASICS</span><span class="summary-main"><strong>Names, values, and variables</strong><span>A variable is a name pointing at a value. That’s the useful mental model.</span></span><span class="open-label">OPEN +</span></summary>
+              <div class="post-body"><p>Python doesn’t make you declare a variable before using one. Write a name, an equals sign, and the value you want to keep. Later, you can use the name instead of typing the value again. It sounds small, but naming things well is a big part of making code easy to read.</p>
+                <p>One detail that catches people at first: <code>=</code> means “store this value under this name,” not “these two things are mathematically equal.” Python works out the right-hand side first, then assigns the result. You can also give a new value to the same name later. The old value isn’t changed in place; the name now refers to the new one.</p>
+                <p>Names can use letters, numbers, and underscores, but they can’t begin with a number. By convention, Python variables use lowercase words with underscores, like <code>total_price</code>. Pick a name that gives the next reader a clue about what the value is for.</p>
+                <table><thead><tr><th>Value</th><th>Type</th><th>Example</th></tr></thead><tbody><tr><td>Whole number</td><td><code>int</code></td><td><code>count = 3</code></td></tr><tr><td>Decimal</td><td><code>float</code></td><td><code>price = 4.50</code></td></tr><tr><td>Text</td><td><code>str</code></td><td><code>name = "Mina"</code></td></tr><tr><td>True or false</td><td><code>bool</code></td><td><code>is_ready = True</code></td></tr><tr><td>No value</td><td><code>NoneType</code></td><td><code>result = None</code></td></tr></tbody></table>
+                <pre><code>answer = 6 * 7
+print(answer)  # 42</code></pre></div>
+            </details>
+          </article>
+
+          <article class="post" data-category="basics">
+            <details>
+              <summary><span class="post-meta">02 / BASICS</span><span class="summary-main"><strong>Strings, numbers, and f-strings</strong><span>Everyday values and a tidy way to put them into sentences.</span></span><span class="open-label">OPEN +</span></summary>
+              <div class="post-body"><p>Strings are how Python represents text. You can write them with single or double quotes; choose whichever makes the sentence easiest to read. If your text itself contains a quote, the other quote style can save you from extra escaping.</p>
+                <p>Numbers behave a little differently depending on the operation. Adding two integers gives an integer, but ordinary division produces a float—even when the answer looks whole. Use <code>//</code> when you want whole-number division, and <code>%</code> when you want the remainder. Those two show up a lot when splitting items into groups or checking whether a number is even.</p>
+                <p>For sentences that include changing values, f-strings are usually the clearest option. Put an <code>f</code> before the opening quote and place each variable inside braces. You can put simple expressions there too, though keeping complicated logic on its own line makes the result easier to understand.</p>
+                <table><thead><tr><th>Thing</th><th>Python</th><th>Result</th></tr></thead><tbody><tr><td>Add</td><td><code>8 + 2</code></td><td><code>10</code></td></tr><tr><td>Divide</td><td><code>8 / 2</code></td><td><code>4.0</code></td></tr><tr><td>Whole-number divide</td><td><code>9 // 2</code></td><td><code>4</code></td></tr><tr><td>Remainder</td><td><code>9 % 2</code></td><td><code>1</code></td></tr></tbody></table>
+                <pre><code>name = "Sam"
+items = 3
+print(f"{name} has {items} items")</code></pre></div>
+            </details>
+          </article>
+
+          <article class="post" data-category="data">
+            <details>
+              <summary><span class="post-meta">03 / COLLECTIONS</span><span class="summary-main"><strong>Lists and tuples</strong><span>Keep values in order, then pick, change, or unpack them.</span></span><span class="open-label">OPEN +</span></summary>
+              <div class="post-body"><p>A list is a good place for a group of things that belong together and may change over time. Lists keep their order, allow duplicates, and can hold different types, although in practice a list of similar items is often easier to work with.</p>
+                <p>Python starts counting positions at zero, so <code>colors[0]</code> means the first item. Negative indexes count back from the end: <code>colors[-1]</code> is the last item. A slice such as <code>colors[1:3]</code> starts at index 1 and stops before index 3. That “stop before” rule is the same one you’ll see in <code>range()</code>.</p>
+                <p>Lists are mutable, which means methods like <code>append()</code> change the existing list. A tuple is ordered too, but it can’t have its items reassigned after it’s created. Tuples are useful for a small fixed group of related values, and unpacking lets you give those values readable names in one step.</p>
+                <table><thead><tr><th>Operation</th><th>Example</th><th>What it does</th></tr></thead><tbody><tr><td>First item</td><td><code>colors[0]</code></td><td>Gets the first value</td></tr><tr><td>Last item</td><td><code>colors[-1]</code></td><td>Gets the last value</td></tr><tr><td>Slice</td><td><code>colors[1:3]</code></td><td>Gets items at 1 and 2</td></tr><tr><td>Add to list</td><td><code>colors.append("blue")</code></td><td>Changes the list</td></tr></tbody></table>
+                <pre><code>colors = ["black", "white"]
+colors.append("gray")
+first, second = ("left", "right")</code></pre></div>
+            </details>
+          </article>
+
+          <article class="post" data-category="data">
+            <details>
+              <summary><span class="post-meta">04 / COLLECTIONS</span><span class="summary-main"><strong>Dictionaries, sets, and comprehensions</strong><span>Three handy ways to organize or build a collection.</span></span><span class="open-label">OPEN +</span></summary>
+              <div class="post-body"><p>When a list feels like the wrong shape for your data, a dictionary may fit better. It stores pairs: a key you look up and the value attached to it. A person’s name, settings for an app, or scores by player are all natural dictionary-shaped problems. Keys are unique, so assigning a value to an existing key replaces the old one.</p>
+                <p>Use <code>get()</code> when a key might be missing and you have a sensible fallback. Bracket lookup is fine when the key should definitely exist; if it doesn’t, Python raises a <code>KeyError</code>, which can help you spot a mistake rather than quietly hiding it.</p>
+                <p>A set keeps only unique values and is handy for removing duplicates or checking membership. Comprehensions are a compact way to build a collection from another one. They’re useful when the transformation is straightforward; if the expression starts to feel like a puzzle, a regular loop is kinder to the person reading it.</p>
+                <table><thead><tr><th>Collection</th><th>Good for</th><th>Example</th></tr></thead><tbody><tr><td>Dictionary</td><td>Looking up a value by key</td><td><code>user["name"]</code></td></tr><tr><td>Set</td><td>Unique values</td><td><code>set(names)</code></td></tr><tr><td>List comprehension</td><td>Making a new list</td><td><code>[n * 2 for n in nums]</code></td></tr></tbody></table>
+                <pre><code>user = {"name": "Mina", "level": 2}
+name = user.get("name", "Guest")
+squares = [n * n for n in range(5)]</code></pre></div>
+            </details>
+          </article>
+
+          <article class="post" data-category="flow">
+            <details>
+              <summary><span class="post-meta">05 / CONTROL FLOW</span><span class="summary-main"><strong>Make a choice with if</strong><span>Run different code depending on what’s true.</span></span><span class="open-label">OPEN +</span></summary>
+              <div class="post-body"><p>Programs get more useful when they can make a decision. An <code>if</code> statement checks a condition and runs its indented block only when that condition is true. Conditions can compare values, check whether a collection is empty, or combine smaller checks with <code>and</code>, <code>or</code>, and <code>not</code>.</p>
+                <p>Python checks branches from top to bottom. Once one condition matches, its block runs and the rest of that chain is skipped. That means the order matters: put the more specific cases first, then use <code>else</code> for the catch-all. You don’t need an <code>else</code> if there’s nothing useful to do when the condition is false.</p>
+                <p>Indentation isn’t decoration in Python; it defines the block. Keep the same indentation within a branch, usually four spaces. In the example, a score of 82 fails the first check and passes the second, so <code>grade</code> becomes <code>"B"</code>.</p>
+                <table><thead><tr><th>Keyword</th><th>Use it when</th></tr></thead><tbody><tr><td><code>if</code></td><td>You’re checking the first condition</td></tr><tr><td><code>elif</code></td><td>You have another condition to check</td></tr><tr><td><code>else</code></td><td>None of the earlier conditions matched</td></tr></tbody></table>
+                <pre><code>score = 82
+if score >= 90:
+    grade = "A"
+elif score >= 80:
+    grade = "B"
+else:
+    grade = "Keep going"</code></pre></div>
+            </details>
+          </article>
+
+          <article class="post" data-category="flow">
+            <details>
+              <summary><span class="post-meta">06 / CONTROL FLOW</span><span class="summary-main"><strong>Loops: for, while, and when to stop</strong><span>Repeat a small bit of work without repeating yourself.</span></span><span class="open-label">OPEN +</span></summary>
+              <div class="post-body"><p>A loop is useful when you want the same operation applied to several values. A <code>for</code> loop takes each item from an iterable in turn, so it works with lists, strings, dictionaries, files, and plenty more. Most of the time, loop over the values directly instead of counting indexes by hand.</p>
+                <p><code>range()</code> is there when you really do need a sequence of numbers. Its stop value is not included, which is why <code>range(5)</code> gives you 0 through 4. If you need both a position and an item, <code>enumerate()</code> provides them together without extra bookkeeping.</p>
+                <p>A <code>while</code> loop repeats as long as its condition remains true. Make sure something in the loop can eventually change that condition, or it may never stop. <code>break</code> exits the loop; <code>continue</code> skips the rest of the current pass and moves on to the next item.</p>
+                <table><thead><tr><th>Tool</th><th>What it helps with</th></tr></thead><tbody><tr><td><code>range(5)</code></td><td>Counting from 0 up to (not including) 5</td></tr><tr><td><code>enumerate(items)</code></td><td>Getting an index and an item together</td></tr><tr><td><code>break</code></td><td>Leaving a loop right away</td></tr><tr><td><code>continue</code></td><td>Skipping the rest of this turn</td></tr></tbody></table>
+                <pre><code>for number, item in enumerate(["tea", "coffee"], start=1):
+    print(number, item)</code></pre></div>
+            </details>
+          </article>
+
+          <article class="post" data-category="functions">
+            <details>
+              <summary><span class="post-meta">07 / FUNCTIONS</span><span class="summary-main"><strong>Functions, arguments, and return values</strong><span>Give a useful bit of code a name you can call again.</span></span><span class="open-label">OPEN +</span></summary>
+              <div class="post-body"><p>Functions let you give a chunk of work a name, then call it wherever you need it. Start with <code>def</code>, choose a clear name, and put any inputs in parentheses. The indented body runs when the function is called—not when Python first reads the definition.</p>
+                <p>A function can send a result back with <code>return</code>. That’s different from <code>print()</code>: printing shows something to a person, while returning makes a value available to the rest of your program. If a function reaches the end without a return statement, Python returns <code>None</code>.</p>
+                <p>Arguments can be passed by position or by name. Named arguments can make a call easier to scan, especially when there are several options. Defaults are useful for inputs that have a common value, but avoid using a mutable list or dictionary as a default; that same object would be reused between calls. <code>*args</code> and <code>**kwargs</code> collect extra positional and keyword arguments when a function needs that flexibility.</p>
+                <table><thead><tr><th>Argument style</th><th>Example</th></tr></thead><tbody><tr><td>Positional</td><td><code>greet("Lee")</code></td></tr><tr><td>Keyword</td><td><code>greet(name="Lee")</code></td></tr><tr><td>Default</td><td><code>def greet(name="friend"):</code></td></tr><tr><td>Extra positional</td><td><code>*args</code></td></tr><tr><td>Extra keyword</td><td><code>**kwargs</code></td></tr></tbody></table>
+                <pre><code>def double(number):
+    return number * 2
+
+result = double(6)  # 12</code></pre></div>
+            </details>
+          </article>
+
+          <article class="post" data-category="functions">
+            <details>
+              <summary><span class="post-meta">08 / FUNCTIONS & OBJECTS</span><span class="summary-main"><strong>Classes and objects</strong><span>Bundle data and the behavior that belongs with it.</span></span><span class="open-label">OPEN +</span></summary>
+              <div class="post-body"><p>Classes are a way to describe objects that share a shape and behavior. If a program has several dogs, for example, each dog can have its own name while sharing the same <code>speak()</code> method. The class is the description; each dog you create from it is an instance.</p>
+                <p>When Python creates a new instance, it calls <code>__init__</code>. The first parameter is conventionally named <code>self</code>; it refers to the particular instance being set up. Writing <code>self.name = name</code> stores the incoming value on that object, so a different dog can have a different name.</p>
+                <p>Methods are functions that belong to a class, and attributes are values attached to an object. You don’t need a class for every bit of data—sometimes a dictionary or a few plain functions are simpler. Classes become useful when values and the operations that work on them naturally belong together. Inheritance can share or specialize behavior, but composition is often a simpler first choice.</p>
+                <table><thead><tr><th>Part</th><th>Meaning</th></tr></thead><tbody><tr><td>Class</td><td>The template, such as <code>Dog</code></td></tr><tr><td>Instance</td><td>One specific dog</td></tr><tr><td>Attribute</td><td>Data attached to an instance</td></tr><tr><td>Method</td><td>A function defined on a class</td></tr><tr><td>Inheritance</td><td>A class extending another class</td></tr></tbody></table>
+                <pre><code>class Dog:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        return f"{self.name} says woof"
+
+pet = Dog("Pip")</code></pre></div>
+            </details>
+          </article>
+
+          <article class="post" data-category="flow">
+            <details>
+              <summary><span class="post-meta">09 / CONTROL FLOW</span><span class="summary-main"><strong>Errors and exceptions</strong><span>Handle expected problems, and use tracebacks to find the rest.</span></span><span class="open-label">OPEN +</span></summary>
+              <div class="post-body"><p>An exception is Python’s way of telling you that something went wrong while the program was running—maybe text wasn’t a valid number, a file wasn’t there, or a key was missing. The traceback shows where the error traveled through your code. Start at the last line to see the exception type and message, then look above it for the line that triggered it.</p>
+                <p>Use <code>try</code> around the small operation that might fail, and catch a specific exception when you know how to respond. Catching every possible exception can hide unrelated bugs, so it’s better to handle the case you actually expect. If the input is bad, for example, you might show a useful message or choose a safe fallback.</p>
+                <p>The optional <code>else</code> block runs only when the <code>try</code> block succeeds. <code>finally</code> runs either way and is commonly used for cleanup. For files, a <code>with</code> block usually handles cleanup for you, so you won’t need to write a <code>finally</code> just to close one.</p>
+                <table><thead><tr><th>Part</th><th>Job</th></tr></thead><tbody><tr><td><code>try</code></td><td>Run the code that might fail</td></tr><tr><td><code>except</code></td><td>Handle a matching exception</td></tr><tr><td><code>else</code></td><td>Run if no exception happened</td></tr><tr><td><code>finally</code></td><td>Run whether or not it failed</td></tr></tbody></table>
+                <pre><code>try:
+    count = int("12")
+except ValueError:
+    count = 0</code></pre></div>
+            </details>
+          </article>
+
+          <article class="post" data-category="tools">
+            <details>
+              <summary><span class="post-meta">10 / MODULES & TOOLS</span><span class="summary-main"><strong>Imports, files, and JSON</strong><span>Use the standard library instead of rebuilding common tools.</span></span><span class="open-label">OPEN +</span></summary>
+              <div class="post-body"><p>Python’s standard library comes with tools for everyday jobs, so it’s worth checking what’s already available before writing your own. An import brings a module or a specific name into the current file. For example, <code>from pathlib import Path</code> gives you a handy object for building and working with file paths.</p>
+                <p>Paths are not always just strings: folders and separators vary between operating systems. <code>pathlib</code> handles those details and gives you readable methods such as <code>read_text()</code>. Specify an encoding like UTF-8 when reading text so the file is interpreted consistently.</p>
+                <p>JSON is a common format for data exchanged between programs. The <code>json</code> module converts JSON text into Python values with <code>loads()</code>, and converts Python values back to JSON text with <code>dumps()</code>. A <code>with</code> block is a reliable way to work with an open file because it closes the file when the block ends, even if something goes wrong inside it.</p>
+                <table><thead><tr><th>Task</th><th>Useful tool</th><th>Example</th></tr></thead><tbody><tr><td>Work with paths</td><td><code>pathlib</code></td><td><code>Path("notes.txt")</code></td></tr><tr><td>Read a file</td><td><code>open()</code></td><td><code>Path("notes.txt").read_text()</code></td></tr><tr><td>Parse JSON text</td><td><code>json.loads()</code></td><td><code>json.loads(text)</code></td></tr><tr><td>Write JSON text</td><td><code>json.dumps()</code></td><td><code>json.dumps(data)</code></td></tr></tbody></table>
+                <pre><code>from pathlib import Path
+
+text = Path("notes.txt").read_text(encoding="utf-8")</code></pre></div>
+            </details>
+          </article>
+
+          <article class="post" data-category="tools">
+            <details>
+              <summary><span class="post-meta">11 / MODULES & TOOLS</span><span class="summary-main"><strong>Testing and virtual environments</strong><span>Check your assumptions and keep project dependencies tidy.</span></span><span class="open-label">OPEN +</span></summary>
+              <div class="post-body"><p>Tests are small checks that help you catch mistakes before they become confusing. An <code>assert</code> is the simplest version: it states what you expect to be true, and raises an error if the result is different. It’s useful while developing, but don’t use assertions to validate important user input—Python can disable them in optimized mode.</p>
+                <p>As a project grows, give tests their own structure. The standard-library <code>unittest</code> module lets you group related checks into test cases and run them together. A good test focuses on one behavior and uses a name that explains what should happen. When a test fails, treat it as a clue: inspect the actual value and compare it with the expectation.</p>
+                <p>Virtual environments solve a different everyday problem. Projects can depend on different versions of libraries, and installing everything globally can turn into a mess. Keeping each project’s packages isolated makes it easier to reproduce the setup later. Python’s standard library is enough for the examples here; environments matter when your project uses additional packages.</p>
+                <table><thead><tr><th>Idea</th><th>Example</th><th>Why</th></tr></thead><tbody><tr><td>Assertion</td><td><code>assert add(2, 3) == 5</code></td><td>Catch a wrong result</td></tr><tr><td>Test case</td><td><code>unittest.TestCase</code></td><td>Organize repeatable checks</td></tr><tr><td>Virtual environment</td><td><code>.venv</code></td><td>Isolate project dependencies</td></tr></tbody></table>
+                <pre><code>def add(a, b):
+    return a + b
+
+assert add(2, 3) == 5</code></pre></div>
+            </details>
+          </article>
+
+          <article class="post" data-category="advanced">
+            <details>
+              <summary><span class="post-meta">12 / MORE PYTHON</span><span class="summary-main"><strong>Generators, decorators, and context managers</strong><span>Small tools for lazy work and reusable behavior.</span></span><span class="open-label">OPEN +</span></summary>
+              <div class="post-body"><p>These tools make more sense once you’ve run into a problem they solve, so there’s no need to memorize them on day one. A generator is a function that uses <code>yield</code> to produce values one at a time. Rather than building a whole list up front, it can pause after each value and continue when the next one is requested. That’s useful for long sequences or data you want to process as it arrives.</p>
+                <p>A decorator is a function that takes another function and returns a wrapped version. The <code>@</code> syntax applies the decorator when the function is defined. Decorators show up in web frameworks, logging, and timing tools, but they’re still just a way to reuse behavior around a function call.</p>
+                <p>Context managers handle a beginning-and-end pattern: set something up, run a block, then clean up. The familiar <code>with open(...)</code> form is an example. Type hints, meanwhile, annotate what kinds of values a function expects or returns. Python doesn’t enforce most hints at runtime, but editors and other tools can use them to catch misunderstandings early.</p>
+                <table><thead><tr><th>Feature</th><th>Look for</th><th>Common use</th></tr></thead><tbody><tr><td>Generator</td><td><code>yield</code></td><td>Produce values as needed</td></tr><tr><td>Decorator</td><td><code>@something</code></td><td>Add behavior around a function</td></tr><tr><td>Context manager</td><td><code>with</code></td><td>Manage resources and cleanup</td></tr><tr><td>Type hint</td><td><code>name: str</code></td><td>Make expected types clearer</td></tr></tbody></table>
+                <pre><code>def count_up_to(limit):
+    for number in range(limit):
+        yield number
+
+for number in count_up_to(3):
+    print(number)</code></pre></div>
+            </details>
+          </article>
+
+          <article class="post" data-category="advanced">
+            <details>
+              <summary><span class="post-meta">13 / MORE PYTHON</span><span class="summary-main"><strong>Async, useful built-ins, and what to learn next</strong><span>A quick map of a few ideas you’ll meet as projects grow.</span></span><span class="open-label">OPEN +</span></summary>
+              <div class="post-body"><p>Once you know the basics, a few built-ins can make everyday code shorter without making it harder to read. <code>len()</code> counts items, <code>sorted()</code> returns a new sorted list, and <code>zip()</code> walks through several iterables side by side. <code>any()</code> and <code>all()</code> answer useful yes-or-no questions about a group of values.</p>
+                <p>Async Python is for work that spends time waiting—often network or file I/O—where it can be helpful to let other tasks make progress in the meantime. It doesn’t automatically make CPU-heavy work faster, and it does add concepts to think about. You’ll see <code>async def</code> define a coroutine and <code>await</code> pause it until an asynchronous operation is ready.</p>
+                <p>There isn’t one checklist you have to finish before you’re allowed to build something. Pick a small project, look up the built-ins that solve the next problem, and learn a feature when it becomes useful. Reading error messages and making tiny experiments are part of learning Python, not signs that you’re doing it wrong.</p>
+                <table><thead><tr><th>Tool</th><th>Use</th></tr></thead><tbody><tr><td><code>len(items)</code></td><td>Count items</td></tr><tr><td><code>zip(a, b)</code></td><td>Pair values from iterables</td></tr><tr><td><code>any(items)</code> / <code>all(items)</code></td><td>Check truth across values</td></tr><tr><td><code>sorted(items)</code></td><td>Get a sorted list</td></tr><tr><td><code>async</code> / <code>await</code></td><td>Write cooperative I/O-bound code</td></tr></tbody></table>
+                <pre><code>names = ["Ari", "Bo"]
+for number, name in zip(range(1, 3), names):
+    print(number, name)</code></pre></div>
+            </details>
+          </article>
+        </div>
+      </section>
+
+      <footer id="about"><a class="wordmark" href="#top">fomo<span>.</span></a><p>Made by fomo..</p><a href="#top">BACK TO TOP ↑</a></footer>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
